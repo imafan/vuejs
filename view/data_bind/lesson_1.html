@@ -7,12 +7,14 @@
 </head>
 <body>
 <div id="app">
-    {{message}}
+    {{* message}} 加入*号后，表示单次插值，今后的数据变化就不会再引起插值更新了
+
+    <div>{{{raw_html}}</div>
 </div>
 <script src="../../js/vue.js" type="text/javascript"></script>
 <script type="text/javascript">
 
-    var exampleData = {message: "hello vue.js"};
+    var exampleData = {message: "hello vue.js",raw:"<p>ssss</p>"};
     new Vue({
         el: "#app",
         data: exampleData
