@@ -871,7 +871,7 @@ var directive = Object.freeze({
 
   /**
    * For an attribute with multiple interpolation tags,
-   * e.g. attr="some-{{thing | filter}}", in order to combine
+   * e.g. calculation_attr="some-{{thing | filter}}", in order to combine
    * the whole thing into a single watchable expression, we
    * have to inline those filters. This function does exactly
    * that. This is a bit hacky but it avoids heavy changes
@@ -7112,7 +7112,7 @@ var template = Object.freeze({
   function compileElement(el, options) {
     // preprocess textareas.
     // textarea treats its text content as the initial value.
-    // just bind it as an attr directive for value.
+    // just bind it as an calculation_attr directive for value.
     if (el.tagName === 'TEXTAREA') {
       var tokens = parseText(el.value);
       if (tokens) {
@@ -8251,7 +8251,7 @@ var template = Object.freeze({
    *                 - {Array<Object>} [filters]
    *                 - {Object} [modifiers]
    *                 - {Boolean} literal
-   *                 - {String} attr
+   *                 - {String} calculation_attr
    *                 - {String} arg
    *                 - {String} raw
    *                 - {String} [ref]

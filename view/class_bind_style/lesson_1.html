@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>llo world</title>
+
+</head>
+<body>
+<div id="app">
+   <!-- <div class="static" v-bind:class="{'class-a': isA, 'class-b':isB}">
+
+    </div>-->
+
+    <!--<div v-bind:class="classObject">
+
+    </div>-->
+
+    <!--<div v-bind:class="[classA, classB]"></div>-->
+
+    <!--<div v-bind:style="{color: activeColor,fontSize: fontSize+'px'}">对象语法</div>-->
+    <div v-bind:style="styleObject">对象语法</div>
+</div>
+<script src="../../js/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var vm =  new Vue({
+        el: "#app",
+        data: {
+            /*isA: true,
+            isB: false*/
+            /*classObject:{
+                "class-a": true,
+                "class-b": false
+            }*/
+            /*classA: "class-a",
+            classB: "class-b"*/
+
+           /* activeColor: "red",
+            fontSize: 30*/
+            styleObject: {
+                color: "red",
+                fontSize: "13px"
+            }
+        }
+    })
+</script>
+</body>
+</html>
