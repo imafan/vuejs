@@ -69,7 +69,42 @@
             <br>
             <span>selected: {{selected | json}}</span>
         </div>
+
+        <div>
+         <select v-model="selected1">
+                <option v-for="option in options" v-bind:value="option.value">
+                    {{option.text}}
+                </option>
+            </select>
+            <span>Selected: {{selected1}}</span>
+        </div>
     </div>
+
+    <h1>绑定value</h1>
+    <div>
+        <h2>checkbox</h2>
+        <input
+                type="checkbox"
+                v-model="toggle"
+                v-bind:true-value="a"
+                v-bind:false-value="b">
+    </div>
+
+    <div>      <h2>radio</h2>
+        <div>
+            <input type="radio" v-model="pick2" v-bind:value="a">
+        </div>
+    </div>
+
+    <h1>参数特性</h1>
+    {{msg1}}
+    <input v-model="msg1" lazy>
+    <br>
+    {{age}}
+    <input v-model="age" number>
+    <br>
+    {{msg2}}
+    <input v-model="msg2" debounce="500">
 </div>
 <script src="../../js/vue.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -77,12 +112,20 @@
     var exampleData = {
         message: "",
         msg: "",
-        checkedNames:["jack"]
+        checkedNames:["jack"],
+        selected1: "A",
+        options: [
+            { text: 'One', value: 'A' },
+            { text: 'Two', value: 'B' },
+            { text: 'Three', value: 'C' }
+        ]
     };
-    new Vue({
+    var vm = new Vue({
         el: "#app",
         data: exampleData
     })
+
+
 </script>
 </body>
 </html>
