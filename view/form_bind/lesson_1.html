@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单控件绑定</title>
+
+</head>
+<body>
+<div id="app">
+    <span>Message is: {{message}}</span>
+    <br>
+    <input type="text" v-model="message" placeholder="edit me">
+    <br>
+
+    <span>Multiline message is:</span>
+
+    <p>{{msg}}</p>
+    <br>
+    <textarea v-model="msg" placeholder="sssss"></textarea>
+
+    <div>
+        <h2>checkbox</h2>
+        <div>
+            <input type="checkbox" id="checkbox" v-model="checked">
+            <label for="checkbox">{{checked}}</label>
+        </div>
+
+        <div>
+            <input type="checkbox" id="jack" value="jack" v-model="checkedNames">
+            <label for="jack">Jack</label>
+            <input type="checkbox" id="john" value="john" v-model="checkedNames">
+            <label for="john">john</label>
+            <input type="checkbox" id="mike" value="mike" v-model="checkedNames">
+            <label for="mike">mike</label>
+            <br>
+            <span>Checked names:{{checkedNames|json}}</span>
+        </div>
+    </div>
+
+    <div>
+        <h2>radio</h2>
+        <div>
+            <input type="radio" id="one" value="one" v-model="picked">
+            <label for="one">one</label>
+            <br>
+            <input type="radio" id="two" value="two" v-model="picked">
+            <label for="two">two</label>
+            <br>
+            <span>picked: {{picked}}</span>
+        </div>
+    </div>
+
+    <div>
+        <h2>select</h2>
+        <!--<div>
+            <select v-model="selected">
+                <option selected>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <span>selected: {{selected}}</span>
+        </div>-->
+        <div>
+            <select v-model="selected" multiple>
+                <option selected>A</option>
+                <option>B</option>
+                <option>C</option>
+            </select>
+            <br>
+            <span>selected: {{selected | json}}</span>
+        </div>
+    </div>
+</div>
+<script src="../../js/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var exampleData = {
+        message: "",
+        msg: "",
+        checkedNames:["jack"]
+    };
+    new Vue({
+        el: "#app",
+        data: exampleData
+    })
+</script>
+</body>
+</html>
