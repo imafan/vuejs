@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>组件</title>
+
+</head>
+<body>
+<div id="app">
+   <my-component></my-component>
+
+    <h2>是用Props传递数据</h2>
+    <child msg="hello"></child>
+
+    <div>
+        <h2>动态props</h2>
+        <div>
+            <input v-model="parentMsg" >
+            <br>
+            <child2 v-bind:my-message="parentMsg"></child2>
+            <child2 :my-message="parentMsg"></child2>
+        </div>
+    </div>
+
+</div>
+
+<h2>自定义事件</h2>
+<div>
+    <!-- 子组件模板 -->
+    <template id="child-template">
+        <input v-model="msg">
+        <button v-on:click="notify">Dispatch Event</button>
+    </template>
+    <!-- 父组件模板 -->
+    <div id="events-example">
+        <p>Messages: {{messages|json}}</p>
+        <child3 v-on:child-msg="handleIt"></child3>
+    </div>
+</div>
+
+<script src="../../js/vue.js" type="text/javascript"></script>
+<script type="text/javascript">
+    //定义
+   /* var MyComponent = Vue.extend({
+        template: "<div>A custom component</div>"
+    });
+    //注册
+    Vue.component("my-component", MyComponent);
+    */
+    //局部注册
+    Vue.component("my-component",{
+        template: "<div>A custom component</div>"
+    })
+//    var Parent = Vue.extend({
+//        components: {
+//            "my-component":{
+//                template: "<div>A custom component</div>"
+//            }
+//        }
+//    })
+
+    Vue.component("child",{
+        props: ["msg"],
+        template: "<span>{{msg}}</span>"
+    })
+
+    Vue.component("child2",{
+        props: ["myMessage"],
+        template: "<span>{{myMessage}}</span>"
+    })
+
+
+
+    //创建根实例
+    var exampleData = {message: "hello vue.js",raw:"<p>ssss</p>"};
+    new Vue({
+        el: "#app",
+        data: exampleData
+    });
+
+
+    // 注册子组件
+    // 将当前消息派发出去
+    Vue.component("child3",{
+        template: "#child-template",
+        data: function(){
+            return {msg: "hello"}
+        },
+        methods: {
+            notify: function(){
+                if(this.msg.trim()){
+                    this.$dispatch("child-msg",this.msg);
+                    this.msg = "";
+                }
+            }
+        }
+    })
+
+    // 初始化父组件
+    // 将收到消息时将事件推入一个数组
+    var parent = new Vue({
+        el:"#events-example",
+        data:{
+            messages: []
+        },
+        // 在创建实例时 `events` 选项简单地调用 `$on`
+        events: {
+            "child-msg": function(msg){
+                // 事件回调内的 `this` 自动绑定到注册它的实例上
+                this.messages.push(msg);
+            }
+        }
+    })
+</script>
+</body>
+</html>
