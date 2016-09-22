@@ -7,7 +7,8 @@
 </head>
 <body>
 <div id="app">
-   <my-component></my-component>
+
+    <my-component></my-component>
 
     <h2>是用Props传递数据</h2>
     <child msg="hello"></child>
@@ -34,7 +35,7 @@
     <!-- 父组件模板 -->
     <div id="events-example">
         <p>Messages: {{messages|json}}</p>
-        <child3 v-on:child-msg="handleIt"></child3>
+        <child3></child3>
     </div>
 </div>
 
